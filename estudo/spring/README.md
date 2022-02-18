@@ -1,5 +1,3 @@
-## Repositório feito com intuito de agregar informações sobre o estudo do Spring Framework
-
 ## Referências
 - https://www.udemy.com/course/spring-hibernate-tutorial/
 

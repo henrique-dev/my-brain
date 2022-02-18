@@ -1,4 +1,4 @@
-# dev-tips
-A collection of dev tips for programming :)
+# Dev tips
+Uma coleção de artigos, dicas e tutoriais importantes relacionadas a progração
 
-## General
+- [Padrões de Projeto](padroes-projeto/README.md)

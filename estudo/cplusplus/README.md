@@ -1,5 +1,3 @@
-## Repositório feito com intuito de agregar informações sobre o estudo do C++
-
 ## Referências:
 - https://www.udemy.com/course/beginning-c-plus-plus-programming/
 
