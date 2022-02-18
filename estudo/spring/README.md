@@ -11,3 +11,4 @@
 ### [1 - Visão Geral](1-visao-geral/README.md)
 ### [2 - Inversão De Controle](2-inversao-de-controle/README.md)
 ### [3 - Injeção De Dependência](3-injecao-de-dependencia/README.md)
+### [4 - Escopo do Bean](4-escopo-do-bean/README.md)
