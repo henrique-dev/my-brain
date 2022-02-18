@@ -6,6 +6,7 @@ Uma coleção de artigos, dicas e tutoriais importantes relacionados ao Linux (D
 - [Como instalar os adicionais de convidados do VirtualBox](geral/README.md#como-instalar-os-adicionais-de-convidados-do-virtualbox)
 - [Como instalar o Yarn](geral/README.md#como-instalar-o-yarn)
 - [Como instalar o apache tomcat](geral/README.md#como-instalar-o-apache-tomcat)
+- [Guia de Bolso do Bash](geral/GUIA_BOLSO.md)
 
 ## SSH
 - [Gerando um chave ssh e adicionando ao gitxxx](ssh/README.md#gerando-um-chave-ssh-e-adicionando-ao-gitxxx)
