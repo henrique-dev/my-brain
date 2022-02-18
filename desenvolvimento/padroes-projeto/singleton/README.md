@@ -151,3 +151,6 @@ RESULT:
 FOO
 FOO
 ```
+
+# REFERENCIAS
+- https://refactoring.guru/pt-br/design-patterns/singleton
