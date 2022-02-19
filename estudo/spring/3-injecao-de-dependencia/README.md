@@ -9,7 +9,7 @@ Aqui serão mostradas as duas mais comuns:
 - Property File Injection
 Será mostrado sobre "auto-wiring" nas anotações nas proximas seções
 
-## Contrutor Injection - Processo de Desenvolvimento no Spring
+## Contrutor Injection - Processo de Desenvolvimento
 ### 1 - Definir a dependência de interace e classe
 > FortuneService.java
 ```java
@@ -51,7 +51,7 @@ public class BaseballCoach implements Coach {
 </bean>
 ```
 
-## Setter Injection - Processo de Desenvolvimento no Spring
+## Setter Injection - Processo de Desenvolvimento
 ### 1 - Criar metodos setters na sua classe para as injeções
 > CricketCoach.java
 ```java
@@ -80,7 +80,7 @@ public class CricketCoach implements Coach {
 </bean>
 ```
 
-## Literal Values Injection - Processo de Desenvolvimento no Spring
+## Literal Values Injection - Processo de Desenvolvimento
 ### 1 - Criar metodos setters na sua classe para as injeções
 > CricketCoach.java
 ```java
@@ -107,7 +107,7 @@ public class CricketCoach implements Coach {
 </bean>
 ```
 
-## Property File Injection - Processo de Desenvolvimento no Spring
+## Property File Injection - Processo de Desenvolvimento
 ### Criar o arquivo de configuração
 > sport.properties
 ```js
