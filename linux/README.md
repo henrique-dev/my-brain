@@ -1,7 +1,7 @@
 # Linux Tips
 Uma coleção de artigos, dicas e tutoriais importantes relacionados ao Linux (Debian 10 e 11)
 
-## Linux
+## Geral
 - [Como adicionar um usuário ao grupo sudo](geral/README.md#como-adicionar-um-usuário-ao-grupo-sudo)
 - [Como instalar os adicionais de convidados do VirtualBox](geral/README.md#como-instalar-os-adicionais-de-convidados-do-virtualbox)
 - [Como instalar o Yarn](geral/README.md#como-instalar-o-yarn)
