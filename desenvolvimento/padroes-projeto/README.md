@@ -26,7 +26,7 @@ A ideia foi seguida por quatro autores: Erich Gamma, John Vlissides, Ralph Johns
 
 Desde então, dúzias de outros padrões orientados a objetos foram descobertos. A “abordagem por padrões” se tornou muito popular em outros campos de programação, então muitos desses padrões agora existem fora do projeto orientado a objetos também.
 
-## Padrões:
+## Tipos:
 - [Singleton](singleton/README.md)
 
 # REFERENCIAS

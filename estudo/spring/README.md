@@ -1,6 +1,3 @@
-## Referências
-- https://www.udemy.com/course/spring-hibernate-tutorial/
-
 # Spring Framework
 ## Tecnologias e ferramentas usadas:
 - Spring Framework
@@ -12,3 +9,6 @@
 ### [2 - Inversão De Controle](2-inversao-de-controle/README.md)
 ### [3 - Injeção De Dependência](3-injecao-de-dependencia/README.md)
 ### [4 - Escopo do Bean](4-escopo-do-bean/README.md)
+
+## REFERENCIAS
+- https://www.udemy.com/course/spring-hibernate-tutorial/
