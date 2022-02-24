@@ -18,13 +18,13 @@
         - Testes
     - Projetos Spring
 
-- ### [Inversão De Controle](2-inversao-de-controle/README.md)
+- ### [Inversão De Controle - XML](2-inversao-de-controle/README.md)
     - Processo de Desenvolvimento
         1 - Configurar seu Spring Beans
         2 - Criar um Spring Container
         3 - Recuperar Beans do Spring Container
 
-- ### [Injeção De Dependência](3-injecao-de-dependencia/README.md)
+- ### [Injeção De Dependência - XML](3-injecao-de-dependencia/README.md)
     - Contrutor Injection - Processo de Desenvolvimento
         1 - Definir a dependência de interace e classe
         2 - Criar um contrutor na sua classe para as injeções
@@ -40,7 +40,7 @@
         2 - Carregar o arquivo de configuração
         3 - Referenciar os valores do arquivo de configuração
 
-- ### [Escopo do Bean](4-escopo-do-bean/README.md)
+- ### [Escopo do Bean - XML](4-escopo-do-bean/README.md)
     - Tipos de Escopo para o Bean
         - Escopo singleton
         - Escopo prototype
@@ -50,6 +50,7 @@
         - Processo de desenvolvimento
             - 1 - Definir os metodos de inicialização e destruição
             - 2 - Configurar os nomes dos metodos no arquivo de configuração do Spring
+- ### [Inversão de Controle - Java Annotations](5-inversao-de-controle/README.md)
 
 ## REFERENCIAS
 - https://www.udemy.com/course/spring-hibernate-tutorial/

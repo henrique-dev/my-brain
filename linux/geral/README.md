@@ -58,7 +58,7 @@ Depois de já termos nosso JAVA_HOME, podemos criar o serviço através do ```sy
 ```
 $ sudo nano /etc/systemd/system/tomcat.service
 ```
-Cole o seguinte contúdo dentro do arquivo ```tomcat.service```.
+Cole o seguinte conteúdo dentro do arquivo ```tomcat.service```.
 > /etc/systemd/system/tomcat.service
 ```
 [Unit]
@@ -93,4 +93,23 @@ $ sudo systemctl daemon-reload
 $ sudo systemctl start tomcat
 $ systemctl status tomcat
 $ systemctl enable tomcat
+```
+
+## Como instalar o Postman
+```
+$ wget https://dl.pstmn.io/download/latest/linux64 -O postman-linux-x64.tar.gz
+$ sudo tar -xzf postman-linux-x64.tar.gz -C /opt
+$ sudo ln -s /opt/Postman/Postman /usr/bin/postman
+$ nano ~/.local/share/applications/Postman.desktop
+```
+Em seguida cole o seguinte conteúdo:
+```
+[Desktop Entry]
+Encoding=UTF-8
+Name=Postman
+Exec=/opt/Postman/app/Postman %U
+Icon=/opt/Postman/app/resources/app/assets/icon.png
+Terminal=false
+Type=Application
+Categories=Development;
 ```

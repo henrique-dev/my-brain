@@ -94,4 +94,45 @@ E os metodos na destruição atraves da propriedade ```destroy-method="doMyClean
 
 ### Processo de desenvolvimento
 #### 1 - Definir os metodos de inicialização e destruição
+> TrackCoach.java
+```java
+    ...
+    public void doMyStartupStuff() {
+        System.out.println("Startup stuffs");
+    }
+
+    public void doMyCleanupStuff() {
+        System.out.println("Cleanup stuffs");
+    }
+    ...
+```
 #### 2 - Configurar os nomes dos metodos no arquivo de configuração do Spring
+> applicationContext.xml
+```xml
+<beans ...>
+    <bean id="myCoach"
+        class="com.br.phdev.springdemo.TrackCoach"
+        init-method="doMyStartupStuff"
+        destroy-method="doMyCleanupStuff">
+    </bean>
+</beans>
+```
+
+---
+
+*Para os Beans com o escopo prototype, o Spring não chama o metodo de destruição. Isso acontece porque o Spring não gerencia todo o ciclo de vida desse escopo.*
+
+*Para realizar alguma ação na destruição do Bean, é necessario que a classe com o escopo faça a implementação da interface* ```DisposableBean```. *Essa interface define um metodo* ```destroy```.
+```java
+public class TrackCoach implements Coach, DisposableBean {
+ 	
+	@Override
+	public void destroy() throws Exception {
+		System.out.println("TrackCoach: inside method doMyCleanupStuffYoYo");		
+	}        
+ 
+}
+```
+
+
+---
