@@ -7,7 +7,7 @@ Uma coleção de artigos, dicas e tutoriais importantes relacionados ao Linux (D
 - [Como instalar o Yarn](geral/README.md#como-instalar-o-yarn)
 - [Como instalar o apache tomcat](geral/README.md#como-instalar-o-apache-tomcat)
 - [Guia de Bolso do Bash](geral/GUIA_BOLSO.md)
-- [Como instalar o Postman](geral/README.md)
+- [Como instalar o Postman](geral/README.md#como-instalar-o-postman)
 
 ## SSH
 - [Gerando um chave ssh e adicionando ao gitxxx](ssh/README.md#gerando-um-chave-ssh-e-adicionando-ao-gitxxx)
