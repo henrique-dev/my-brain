@@ -91,6 +91,10 @@ rails g rspec:install
 Adicione as seguintes linhas:
 >nome_aplicacao/config/application.rb
 ```ruby
+# If you've never dealt with background workers before, this is the Rails
+# way to use them through Active Job. We just need to tell it to use Sidekiq.
+config.active_job.queue_adapter = :sidekiq
+
 # Don't generate system test files.
 config.generators.system_tests = nil
 
