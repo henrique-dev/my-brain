@@ -91,6 +91,11 @@ rails g rspec:install
 Adicione as seguintes linhas:
 >nome_aplicacao/config/application.rb
 ```ruby
+# Since we're using Redis for Sidekiq, we might as well use Redis to back
+# our cache store. This keeps our application stateless as well.
+config.cache_store = :redis_store, ENV['CACHE_URL'],
+                     { namespace: 'atena::cache' }
+                     
 # If you've never dealt with background workers before, this is the Rails
 # way to use them through Active Job. We just need to tell it to use Sidekiq.
 config.active_job.queue_adapter = :sidekiq
