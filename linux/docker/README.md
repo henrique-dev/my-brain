@@ -216,6 +216,7 @@ production:
 Crie dois arquivos: .env e .env-example
 Cole o seguinte conteúdo em ambos:
 > .env
+> 
 > .env-example
 ```
 # Docker user and group ids
