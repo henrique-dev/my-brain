@@ -35,6 +35,12 @@ Certifique-se de que a versão do ruby é a 3.0.2
 ```ruby
 3.0.2
 ```
+> nome_aplicacao/Gemfile
+```ruby
+...
+ruby "3.0.2"
+...
+```
 
 ### Remove as gems desnecessárias
 > nome_aplicacao/Gemfile
