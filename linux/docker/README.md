@@ -647,33 +647,6 @@ Após isso execute
 bundle install
 ```
 
-### Crie o arquivo de configuração da base de dados e cole o seguinte conteudo
-> nome_aplicacao/config/database.yml
-```yml
-default: &default
-  adapter: postgresql
-  encoding: unicode
-  host: postgresdb
-  username: postgres
-  password: password
-  pool: 5
-
-development:
-  <<: *default
-  database: nome_aplicacao_development
-
-
-test:
-  <<: *default
-  database: nome_aplicacao_test
-
-production:
-  <<: *default
-  database: nome_aplicacao_production
-  username: nome_aplicacao
-  password: <%= ENV["NOME_APLICACAO_DATABASE_PASSWORD"] %>
-```
-
 ### Inicializar o webpacker e Rspec
 ```
 rails webpacker:install
@@ -730,8 +703,34 @@ rails s -b 0.0.0.0
 Exclua do projeto os seguites arquivos:
 > nome_aplicacao/config/puma.rb
 
-### Configurando a aplicação pra trabalhar com Redis
+### Configurando a aplicação pra trabalhar com Redis e Postgresql
 Substitua a configuração atual dos arquivos, substituindo nome_aplicacao pelo nome da sua aplicação, pelas seguintes:
+> nome_aplicacao/config/database.yml
+```yml
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: postgresdb
+  username: postgres
+  password: password
+  pool: 5
+
+development:
+  <<: *default
+  database: nome_aplicacao_development
+
+
+test:
+  <<: *default
+  database: nome_aplicacao_test
+
+production:
+  <<: *default
+  database: nome_aplicacao_production
+  username: nome_aplicacao
+  password: <%= ENV["NOME_APLICACAO_DATABASE_PASSWORD"] %>
+```
+
 > nome_aplicacao/config/cable.yml
 ```yml
 development:
