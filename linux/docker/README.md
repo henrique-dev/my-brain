@@ -24,7 +24,7 @@ cd nome_aplicacao
 rails new nome_aplicacao --skip-bundle --skip-active-record --skip-test --skip-system-test --webpack
 git init .
 git add .
-git commit "First commit"
+git commit -m "First commit"
 ```
 A estrutura do projeto devera ser a seguinte:
 - nome_aplicacao (raiz)
