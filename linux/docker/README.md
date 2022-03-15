@@ -57,6 +57,8 @@ gem 'sidekiq-batch', '~> 0.1.3'
 gem 'redis-rails', '~> 5.0', '>= 5.0.2'
 gem 'awesome_print', '~> 1.8'
 gem 'pry-rails', '~> 0.3.3'
+gem 'slim', '~> 3.0', '>= 3.0.6'
+gem 'slim-rails', '~> 3.1', '>= 3.1.1'
 
 group :development, :test do
   gem 'rubocop', '~> 1.25', '>= 1.25.1'
@@ -83,6 +85,40 @@ rails g mongoid:config
 ```
 rails webpacker:install
 rails g rspec:install
+```
+
+### Configurar a aplicação pra usar o Slim como gerador de templates e usar o Rspec pra gerar os testes
+Adicione as seguintes linhas:
+>nome_aplicacao/config/application.rb
+```ruby
+# Don't generate system test files.
+config.generators.system_tests = nil
+
+config.generators do |g|
+  g.template_engine :slim
+end
+```
+### Configurar o Rspec com o DatabaseCleaner
+Adicione as seguintes linhas:
+>nome_aplicacao/spec/spec_helper.rb
+```ruby
+RSpec.configure do |config|
+  ...
+  config.before(:suite) do
+    DatabaseCleaner[:mongoid, db: :default].strategy = :deletion
+    # for multiples databases
+    DatabaseCleaner[:mongoid, db: :custom].strategy = :deletion
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
+  ...
+end
 ```
 
 ### Testando a aplicação (opcional)
