@@ -11,6 +11,8 @@ Uma coleção de artigos, dicas e tutoriais importantes relacionados ao Linux (D
 
 ## Docker
 - [Conteinerizando um aplicativo Ruby on Rails para desenvolvimento com o Docker Compose](docker/README.md)
+  - [Rails e MongoDB](docker/README.md#rails-e-mongodb)
+  - [Rails e PostgreSQL](docker/README.md#rails-e-postgresql)
 
 ## SSH
 - [Gerando um chave ssh e adicionando ao gitxxx](ssh/README.md#gerando-um-chave-ssh-e-adicionando-ao-gitxxx)
