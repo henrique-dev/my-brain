@@ -70,10 +70,14 @@ group :test do
 end
 ```
 Após isso execute
-```bundle install```
+```
+bundle install
+```
 
 ### Gerar o arquivo de configuração Mongoid
-```rails g mongoid:config```
+```
+rails g mongoid:config
+```
 
 ### Inicializar o webpacker e Rspec
 ```
@@ -82,7 +86,9 @@ rails g rspec:install
 ```
 
 ### Testando a aplicação (opcional)
-```rails s -b 0.0.0.0```
+```
+rails s -b 0.0.0.0
+```
 
 ### Excluindo arquivos desnecessários
 Exclua do projeto os seguites arquivos:
