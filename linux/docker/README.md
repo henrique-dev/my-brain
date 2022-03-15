@@ -22,6 +22,8 @@ A base de dados será opcional: MongoDB ou Postgresql.
 mkdir nome_aplicacao
 cd nome_aplicacao
 rails new nome_aplicacao --skip-bundle --skip-active-record --skip-test --skip-system-test
+rm -rf nome_aplicacao/.git
+rm -rf nome_aplicacao/.gitignore
 git init .
 git add .
 git commit -m "First commit"
@@ -581,6 +583,8 @@ docker-compose up
 mkdir nome_aplicacao
 cd nome_aplicacao
 rails new nome_aplicacao --skip-bundle --skip-test --skip-system-test
+rm -rf nome_aplicacao/.git
+rm -rf nome_aplicacao/.gitignore
 git init .
 git add .
 git commit -m "First commit"
@@ -605,7 +609,9 @@ ruby "3.0.2"
 > nome_aplicacao/Gemfile
 
 ```ruby
-gem "puma", "~> x.y"
+gem "puma"
+gem "sqlite3"
+gem "sprockets-rails"
 ```
 
 ### Adicionar as gems necessárias
