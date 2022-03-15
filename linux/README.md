@@ -9,6 +9,9 @@ Uma coleção de artigos, dicas e tutoriais importantes relacionados ao Linux (D
 - [Guia de Bolso do Bash](geral/GUIA_BOLSO.md)
 - [Como instalar o Postman](geral/README.md#como-instalar-o-postman)
 
+## Docker
+- [Conteinerizando um aplicativo Ruby on Rails para desenvolvimento com o Docker Compose](docker/README.md)
+
 ## SSH
 - [Gerando um chave ssh e adicionando ao gitxxx](ssh/README.md#gerando-um-chave-ssh-e-adicionando-ao-gitxxx)
 
