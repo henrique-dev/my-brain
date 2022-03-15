@@ -611,7 +611,6 @@ ruby "3.0.2"
 ```ruby
 gem "puma"
 gem "sqlite3"
-gem "sprockets-rails"
 ```
 
 ### Adicionar as gems necessárias
