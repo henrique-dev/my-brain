@@ -14,6 +14,8 @@ Se você estiver desenvolvendo ativamente um aplicativo, usar o Docker pode simp
 ### Observações
 O ambiente rails será integrado com Git, Sidekiq, Redis, Nginx, Unicorn e Rspec.
 
+A versão utilizada do ruby será 3.0.2.
+
 A base de dados será opcional: MongoDB ou Postgresql.
 
 ## Rails e MongoDB
