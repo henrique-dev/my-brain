@@ -156,7 +156,7 @@ Cole o seguinte conteúdo em cada arquivo:
 	]
 }
 ```
-Após, vá em **Terminal** > **Configure Default Build Task** e selecione **Compilar C++ usando o MSVC**.
+Após, no VSCode vá em **Terminal** > **Configure Default Build Task** e selecione **Compilar C++ usando o MSVC**.
 Obs.: É sempre necessário iniciar o VSCode pelo ferramenta do Visual Studio.
 
 #### Testando
