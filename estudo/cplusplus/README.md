@@ -3,50 +3,77 @@
 - VSCode
 
 ## Seções
-- [Visão Geral](secao-1/README.md)
-- [A Estrutura de um Programa](secao-2/README.md)
-    - Declaração
-    - Funções e a função _main_
-    - Componentes básicos
-        - Palavras chaves e identificadores
-        - Operadores
-            - Operador de atribuição
-            - Operadores aritmeticos
-            - Atribuição composta
-            - Incremento e decremento
-            - Operadores relacionais e de comparação
-            - Operadores lógicos
-            - Operador de vírgula
-            - Operadores bit a bit
-            - Size of
-        - Diretivas do préprocessador
-            - Definições de macro
-            - Inclusões condicionais
-            - Controle de linha
-            - Diretiva de erro
-            - Inclusão do arquivo de origem
-            - Diretiva pragma
-        - Comentários
-        - Namespaces
-        - I/O Básico
-            - Saída padrão
-            - Entrada padrão
-- [Váriaveis, Tipos e Constantes](secao-3/README.md)
-    - Váriaveis
-        - Variaveis globais
-            - Declarando e nomeando variáveis globais
-            - Variáveis globais têm escopo de arquivo e duração estática
-            - Inicialização de variável global
-            - Variáveis globais constantes
-        - Identificadores
-        - Tipos fundamentais de dados
-        - Constantes
-            - Literais inteiros
-            - Literais de ponto flutuante
-            - Literais Booleanos
-            - Literais de caracteres
-            - Definindo Constantes
-        - Declarando e inicializando variaveis
+- **Parte I: INTRODUÇÃO AO C++**
+  - **CAPÍTULO 1: UMA VISÃO RÁPIDA SOBRE O C++ E A BIBLIOTECA PADRÃO**
+    - **O básico sobre C++**
+      - **O Hello World obrigatório**
+        - **Comentários**
+        - **Diretivas do pré-processador**
+        - **A função main()**
+        - **Fluxos de I/O**
+      - **Namespaces**
+      - **Literals**
+      - **Variáveis**
+      - **Operadores**
+      - **Tipos**
+        - **Tipos enumerados**
+        - **Estruturas**
+      - **Declarações condicionais**
+        - **Declaração if/else**
+        - **Declaração switch**
+        - **O operador condicional**
+      - **Operadores de avaliação lógica**
+      - **Funções**
+        - **Function Return Type Deduction**
+        - **Current Function's Name**
+      - **Arrays no estilo C**
+      - **std::array**
+      - **std::vector**
+      - **Structured Bindings**
+      - **Laços de repetição**
+        - **Laço while**
+        - **Laço do/while**
+        - **Laço for**
+        - **Laço Range-Based For**
+      - **Initializer Lists**
+      - **Those are the basics**
+    - **Mergulhando no C++**
+      - **Strings em C++**
+      - **Ponteiros e memória dinâmica**
+        - **The stack and the heap**
+        - **Trabalhando com ponteiros**
+        - **Arrays dinamicamente alocados**
+        - **Constantes de ponteiro nulo**
+        - **Ponteiros inteligentes**
+      - **Os usos de const**
+        - **Constantes**
+        - **Para proteger parametros**
+      - **Referencias**
+        - **Passagem por referencia**
+        - **Passagem por referencia const**
+      - **Exceções**
+      - **Inferencia de tipo**
+        - **A palavra chave auto**
+        - **A palavra chave decltype**
+    - **C++ como uma linguagem orientada a objetos**
+      - **Definindo classes**
+      - **Usando classes**
+    - **Inicialização uniforme**
+      - **Inicialização direta de lista x inicialização de lista por cópia**
+    - **A biblioteca padrão**
+    - **Seu primeiro programa C++**
+      - **Um sistema de registro de empregado**
+      - **A classe Employee**
+        - **Employee.h**
+        - **Employee.cpp**
+        - **EmployeeTest.cpp**
+      - **A class Database**
+        - **Database.h**
+        - **Database.cpp**
+        - **DatabaseTest.cpp**
+      - **A interface do usuário**
+      - **Examinando o programa**
+
 
 ## REFERENCIAS:
-- https://www.udemy.com/course/beginning-c-plus-plus-programming/
+- Marc Gregoire. Professional C++, 4th Edition.

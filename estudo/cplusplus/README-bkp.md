@@ -1,0 +1,52 @@
+## Tecnologias e ferramentas usadas
+- C++
+- VSCode
+
+## Seções
+- [Introdução](secao-1/README.md)
+- [A Estrutura de um Programa](secao-2/README.md)
+    - Declaração
+    - Funções e a função _main_
+    - Componentes básicos
+        - Palavras chaves e identificadores
+        - Operadores
+            - Operador de atribuição
+            - Operadores aritmeticos
+            - Atribuição composta
+            - Incremento e decremento
+            - Operadores relacionais e de comparação
+            - Operadores lógicos
+            - Operador de vírgula
+            - Operadores bit a bit
+            - Size of
+        - Diretivas do préprocessador
+            - Definições de macro
+            - Inclusões condicionais
+            - Controle de linha
+            - Diretiva de erro
+            - Inclusão do arquivo de origem
+            - Diretiva pragma
+        - Comentários
+        - Namespaces
+        - I/O Básico
+            - Saída padrão
+            - Entrada padrão
+- [Váriaveis, Tipos e Constantes](secao-3/README.md)
+    - Váriaveis
+        - Variaveis globais
+            - Declarando e nomeando variáveis globais
+            - Variáveis globais têm escopo de arquivo e duração estática
+            - Inicialização de variável global
+            - Variáveis globais constantes
+        - Identificadores
+        - Tipos fundamentais de dados
+        - Constantes
+            - Literais inteiros
+            - Literais de ponto flutuante
+            - Literais Booleanos
+            - Literais de caracteres
+            - Definindo Constantes
+        - Declarando e inicializando variaveis
+
+## REFERENCIAS:
+- https://www.udemy.com/course/beginning-c-plus-plus-programming/
