@@ -1,6 +1,10 @@
 ## VSCode e C++
 ### Windows (MSVC)
-Primeiramente é necessário instalar o Visual Studio com as ferramentas de desenvolvimento pra C++.
+#### Pré requisitos
+- Instalar o [Visual Studio Code](https://code.visualstudio.com/download)
+- Instalar o [C/C++ extension for VS Code](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools)
+- Instalar o Microsoft Visual C++ (MSVC) compiler toolset
+![teste](/ambiente/imagens/1.png)
 
 Depois deve se iniciar o VSCode pela ferramenta 'Developer Command Prompt for VS 20XX', digitando:
 ```
