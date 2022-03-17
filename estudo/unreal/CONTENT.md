@@ -131,4 +131,6 @@ Depois é necessário apagar o diretorio **Binaries** que fica em ```.../raiz_do
 
 Abra o UnrealEngine novamente e você devera ver a seguinte mensagem, no qual devera clicar em sim, depois de abrir seu projeto:
 
-<img url="/estudo/unreal/imagens/6.png"/>
+<div align='center'>
+  <img src="imagens/6.png">
+</div>
