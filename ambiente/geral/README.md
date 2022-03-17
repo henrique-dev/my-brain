@@ -6,6 +6,7 @@
 - Instalar o Microsoft Visual C++ (MSVC) compiler toolset
 ![teste](/ambiente/imagens/1.png)
 
+#### Integração
 Depois deve se iniciar o VSCode pela ferramenta 'Developer Command Prompt for VS 20XX', digitando:
 ```
 code
@@ -179,3 +180,24 @@ Finalmente vá no arquivo ```main.cpp``` e então em **Run** > **Start Debugging
 ```
 Hello World!
 ```
+
+## VSCode e Unreal
+### Windows (MSVC)
+#### Pré requisitos
+- Unreal Engine 4
+
+#### Integração
+No Unreal Engine vá em **Edit** > **Editor Preferences**. Depois, no lado esquerdo vá em **Source Code**.
+
+Depois selecione o **Visual Studio Code** no dropdown.
+![teste](/ambiente/imagens/2.png)
+
+Quando fizer isso, vai aparecer uma mensagem que será necessário reiniciar o Unreal Engine. Clique em reiniciar.
+
+Depois pode se ir em **File** > **Generate Visual Studio Code Project**.
+
+E finalmente em **File** > **Open Visual Studio Code**.
+
+Para corrigir problemas associados ao intellisence que podem aparecer dependendo da versão Unreal usada, é necessário instalar uma extensão ao VSCode. Ela pode ser obtida no seguinte [link](https://gist.github.com/boocs/f63a4878156295b6e854cac68672f305#installation).
+
+Depois vá em **File** > **Preferences** > **Settings**. No campo de busca digite **ue intellisence**, e então marque as duas caixas relacionadas a esta configuração. Finalmente feche o VSCode e abra ele novamente.
