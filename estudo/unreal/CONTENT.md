@@ -9,7 +9,9 @@ Seu núcleo é escrito em C++, possibilitando a portabilidade. Suporta múltipla
 ### Controlando a ViewPort
 Pode se ter mais de um viewport. É bem útil quando se esta trabalhando em mais de um Level. Para ativar outras pode se ir em **Window** > **ViewPorts**.
 
-![teste](/estudo/unreal/imagens/1.png)
+<div align='center'>
+  <img src="imagens/1.png">
+</div>
 
 ### Actor e Components
 - Um Actor é um container que pode ter muitos Components
@@ -17,29 +19,53 @@ Pode se ter mais de um viewport. É bem útil quando se esta trabalhando em mais
 
 ### Unreal C++ Types
 O Unreal tem seus próprios tipos.
-Tipo C++ | Tipo Unreal
---- | ---
-```std::string``` | ```FString```
-```int``` | ```int32```
+<div align='center'>
+  <table>
+    <thead>
+      <tr>
+        <th>Tipo C++</th>
+        <th>Tipo Unreal</th>
+      </tr>
+    <thead>
+    <tbody>
+      <tr>
+        <td>std::string</td>
+        <td>FString</td>
+      </tr>
+      <tr>
+        <td>int</td>
+        <td>int32</td>
+      </tr>
+    <tbody>
+  </table>
+</div>
 
 ### Adicionando cabeçalho de Copyright
 É possível adicionar cabeçalhos automaticos de Copyright aos seus arquivos criados.
 Para isso deve se ir em **Edit** > **Project Settings**.
 
-![teste](/estudo/unreal/imagens/4.png)
+<div align='center'>
+  <img src="imagens/4.png">
+</div>
 
 Depois em **Project** > **Description** e colocar a mensagem de copyright em **Copyright Notice**
 
-![teste](/estudo/unreal/imagens/5.png)
+<div align='center'>
+  <img src="imagens/5.png">
+</div>
 
 ### Classes e componentes
 Após adicionar um objeto na cena, podemos selecionar ele, e depois ir em **+Add Component** > **New C++ Component**.
 
-![teste](/estudo/unreal/imagens/2.png)
+<div align='center'>
+  <img src="imagens/2.png">
+</div>
 
 Selecione **Actor Component** e depois clique em **Next**. Finalmente coloque o nome da classe clique em **Create Class**.
 
-![teste](/estudo/unreal/imagens/3.png)
+<div align='center'>
+  <img src="imagens/3.png">
+</div>
 
 Nesse exemplo será utilizado **Teste** como nome da classe.
 Com isso teremos os seguintes arquivos criados:
