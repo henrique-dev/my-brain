@@ -19,6 +19,7 @@ O Unreal tem seus próprios tipos.
 Tipo c++ | Tipo Unreal
 --- | ---
 ```std::string``` | ```FString```
+```int``` | ```int32```
 
 ### Adicionando cabeçalho de Copyright
 É possível adicionar cabeçalhos automaticos de Copyright aos seus arquivos criados.
