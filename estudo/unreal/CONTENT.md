@@ -8,6 +8,7 @@ Seu núcleo é escrito em C++, possibilitando a portabilidade. Suporta múltipla
 ## Unreal Engine
 ### Controlando a ViewPort
 Pode se ter mais de um viewport. É bem útil quando se esta trabalhando em mais de um Level. Para ativar outras pode se ir em **Window** > **ViewPorts**.
+
 ![teste](/estudo/unreal/imagens/1.png)
 
 ### Actor e Components
@@ -16,7 +17,7 @@ Pode se ter mais de um viewport. É bem útil quando se esta trabalhando em mais
 
 ### Unreal C++ Types
 O Unreal tem seus próprios tipos.
-Tipo c++ | Tipo Unreal
+Tipo C++ | Tipo Unreal
 --- | ---
 ```std::string``` | ```FString```
 ```int``` | ```int32```
@@ -24,15 +25,22 @@ Tipo c++ | Tipo Unreal
 ### Adicionando cabeçalho de Copyright
 É possível adicionar cabeçalhos automaticos de Copyright aos seus arquivos criados.
 Para isso deve se ir em **Edit** > **Project Settings**.
+
 ![teste](/estudo/unreal/imagens/4.png)
+
 Depois em **Project** > **Description** e colocar a mensagem de copyright em **Copyright Notice**
+
 ![teste](/estudo/unreal/imagens/5.png)
 
 ### Classes e componentes
 Após adicionar um objeto na cena, podemos selecionar ele, e depois ir em **+Add Component** > **New C++ Component**.
+
 ![teste](/estudo/unreal/imagens/2.png)
+
 Selecione **Actor Component** e depois clique em **Next**. Finalmente coloque o nome da classe clique em **Create Class**.
+
 ![teste](/estudo/unreal/imagens/3.png)
+
 Nesse exemplo será utilizado **Teste** como nome da classe.
 Com isso teremos os seguintes arquivos criados:
 > Teste.h
@@ -122,4 +130,5 @@ No método construtor, a instrução ```PrimaryComponentTick.bCanEverTick = true
 Depois é necessário apagar o diretorio **Binaries** que fica em ```.../raiz_do_projeto/Binaries```. Lembre-se de fechar o UnrealEngine antes.
 
 Abra o UnrealEngine novamente e você devera ver a seguinte mensagem, no qual devera clicar em sim, depois de abrir seu projeto:
+
 ![teste](/estudo/unreal/imagens/6.png)
