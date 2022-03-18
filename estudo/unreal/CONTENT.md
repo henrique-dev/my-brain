@@ -49,7 +49,7 @@ O Unreal tem seus próprios tipos.
       <tr><td>std::string</td><td>FString</td></tr>
       <tr><td>int</td><td>int32</td></tr>
       <tr><td>char</td><td>TCHAR</td></tr>
-      <tr><td>[]</td><td>TArray\<type\></td></tr>
+      <tr><td>[]</td><td>TArray< type ></td></tr>
     <tbody>
   </table>
 </div>
