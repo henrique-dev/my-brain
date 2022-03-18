@@ -6,6 +6,10 @@ Seu núcleo é escrito em C++, possibilitando a portabilidade. Suporta múltipla
 ## Instalação
 
 ## Unreal Engine
+### Padronização
+- Variáveis em CamelCase. Ex.: ```int UmaVariavel = 10;```
+- Variáveis booleanas começam com b. Ex.: ```bool bGameOver = false;```
+
 ### Controlando a ViewPort
 Pode se ter mais de um viewport. É bem útil quando se esta trabalhando em mais de um Level. Para ativar outras pode se ir em **Window** > **ViewPorts**.
 
@@ -16,29 +20,6 @@ Pode se ter mais de um viewport. É bem útil quando se esta trabalhando em mais
 ### Actor e Components
 - Um Actor é um container que pode ter muitos Components
 - Existem muitos tipos diferentes de Components
-
-### Unreal C++ Types
-O Unreal tem seus próprios tipos.
-<div align='center'>
-  <table>
-    <thead>
-      <tr>
-        <th>Tipo C++</th>
-        <th>Tipo Unreal</th>
-      </tr>
-    <thead>
-    <tbody>
-      <tr>
-        <td>std::string</td>
-        <td>FString</td>
-      </tr>
-      <tr>
-        <td>int</td>
-        <td>int32</td>
-      </tr>
-    <tbody>
-  </table>
-</div>
 
 ### Adicionando cabeçalho de Copyright
 É possível adicionar cabeçalhos automaticos de Copyright aos seus arquivos criados.
@@ -53,6 +34,64 @@ Depois em **Project** > **Description** e colocar a mensagem de copyright em **C
 <div align='center'>
   <img src="imagens/5.png">
 </div>
+
+### Unreal C++ Types
+O Unreal tem seus próprios tipos.
+<div align='center'>
+  <table>
+    <thead>
+      <tr>
+        <th>Tipo C++</th>
+        <th>Tipo Unreal</th>
+      </tr>
+    <thead>
+    <tbody>
+      <tr><td>std::string</td><td>FString</td></tr>
+      <tr><td>int</td><td>int32</td></tr>
+      <tr><td>char</td><td>TCHAR</td></tr>
+      <tr><td>[]</td><td>TArray\<type\></td></tr>
+    <tbody>
+  </table>
+</div>
+
+#### FString
+No geral, deve se usar o macro ```TEXT()``` quando for usar variaveis em string. Se não for especificado, o padrão de codificação de caractere será o ANSI, no qual é muito limitado em relação ao suporte de caracteres. Qualquer literal ANSI passado para um FString deve ser convertido pra TCHAR (codificação unicode nativa), então é mais eficiente usar ```TEXT()```.
+```c++
+FString Frase = TEXT("O rato roeu a roupa do rei de Roma");
+```
+##### Formatando corretamente
+Podemos usar a função ```Printf``` para formatar valores e adiciona-los em uma string.
+```c++
+int quantidade = 10;
+FString::Printf(TEXT("Eu tenho %i maças"), quantidade); // Eu tenho 10 maças
+
+FString palavra = TEXT("Mundo");
+FString::Printf(TEXT("Olá %s"), *palavra); // Olá mundo
+
+FString::Printf(TEXT("Olá %s, eu tenho %i maças"), *palavra, quantidade); // Olá mundo, eu tenho 10 maças
+```
+
+#### TCHAR
+```c++
+const TCHAR HW[] = TEXT("BOLOS");
+```
+
+#### TArray
+```c++
+const TArray<FString> Palavras = {
+  TEXT("VERMELHO"),
+  TEXT("VERDE"),
+  TEXT("AZUL")
+};
+```
+
+### Alguns metodos pra ajudar
+####
+Em vez de aumentar massivamente os tempos de execução criando conteudo pode se mudar isso carregando dados diretamente de arquivos com o metodo ```FFileHelper::LoadFileToStringArray```.
+```c++
+const FString WordListPath = FPaths::ProjectContentDir() / TEXT("WordLists/HiddenWordList.txt");
+FFileHelper::LoadFileToStringArray(Words, *WordListPath);
+```
 
 ### Classes e componentes
 Após adicionar um objeto na cena, podemos selecionar ele, e depois ir em **+Add Component** > **New C++ Component**.
@@ -102,10 +141,13 @@ public:
 ```
 É importante ressaltar que a linha de include da sua propria classe ```SuaClasse.generate.h``` deve sempre ficar abaixo das inclusões das classes do Unreal.
 ```c++
+...
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "Teste.generated.h" // Sempre abaixo
+...
 ```
+
 > Teste.cpp
 ```c++
 // Fill out your copyright notice in the Description page of Project Settings.
