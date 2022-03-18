@@ -70,6 +70,7 @@ FString::Printf(TEXT("Olá %s"), *palavra); // Olá mundo
 
 FString::Printf(TEXT("Olá %s, eu tenho %i maças"), *palavra, quantidade); // Olá mundo, eu tenho 10 maças
 ```
+- ```Len()``` Retorna a quantidade de caracteres na string.
 
 #### TCHAR
 ```c++
@@ -77,6 +78,11 @@ const TCHAR HW[] = TEXT("BOLOS");
 ```
 
 #### TArray
+- ```Num()``` Retorna a quantidade de elementos do array.
+- ```Add()``` Adiciona um elemento no final do array.
+- ```Emplace()``` Adiciona um elemento no final do array.
+- ```Remove()``` Remove elementos.
+
 ```c++
 const TArray<FString> Palavras = {
   TEXT("VERMELHO"),
@@ -85,13 +91,32 @@ const TArray<FString> Palavras = {
 };
 ```
 
+### Unreal C++ Classes e metodos
+#### FMath
+```FMath::RandRange(0, 10)``` Retorna um número aleatorio que seja 0 ou 10, ou entre 0 e 10.
+
 ### Alguns metodos pra ajudar
-####
-Em vez de aumentar massivamente os tempos de execução criando conteudo pode se mudar isso carregando dados diretamente de arquivos com o metodo ```FFileHelper::LoadFileToStringArray```.
+#### Carregando dados a partir de um arquivo
+Em vez de aumentar massivamente os tempos de execução criando conteudo pode se mudar isso carregando dados diretamente de arquivos com o metodo ```FFileHelper::LoadFileToStringArray```. O exemplo a seguir carrega uma lista de palavras em um array.
 ```c++
+TArray<FString> Palavras;
 const FString WordListPath = FPaths::ProjectContentDir() / TEXT("WordLists/HiddenWordList.txt");
-FFileHelper::LoadFileToStringArray(Words, *WordListPath);
+FFileHelper::LoadFileToStringArray(Palavras, *WordListPath);
 ```
+##### Carregando dados com um criterio
+Podemos usar o metodo anterior pra popular um array baseado em um criterio, apenas usando C++ e lambdas. ```LoadFileToStringArrayWithPredicate``` pode obter um argumento adicional na forma de função que recebe uma string e retorna um booleano. O exemplo a seguir adiciona ao array somente palavras que tenham menos de 10 caracteres dado o arquivo contendo os dados.
+```c++
+TArray<FString> Palavras;
+const FString WordListPath = FPaths::ProjectContentDir() / TEXT("WordLists/HiddenWordList.txt");
+FFileHelper::LoadFileToStringArrayWithPredicate(Palavras, *WordListPath, [](const FString& Word) { return Word.Len() < 10; });
+```
+
+
+##### Packaging
+Para que isso funcione em um jogo empacotado, você precisaria adicionar o diretório WordLists à lista de Diretórios Não-Ativos Adicionais para empacotar em suas Configurações do Projeto em Empacotamento. Alternativamente, você pode simplesmente usar a pesquisa.
+<div align='center'>
+  <img src="imagens/7.png">
+</div>
 
 ### Classes e componentes
 Após adicionar um objeto na cena, podemos selecionar ele, e depois ir em **+Add Component** > **New C++ Component**.
