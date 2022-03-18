@@ -3,6 +3,9 @@ Unreal Engine é um motor de jogo desenvolvido pela Epic Games, usado pela prime
 
 Seu núcleo é escrito em C++, possibilitando a portabilidade. Suporta múltiplas plataformas, incluindo Microsoft Windows, Linux, Mac OS e Mac OS X em computadores pessoais, e os consoles Dreamcast, GameCube, Nintendo Switch, PlayStation 2, PlayStation 3, PlayStation 4, PlayStation 5, Stadia, Wii, Wii U, Xbox, Xbox 360, Xbox One e Xbox Series X.
 
+## Referencias
+- [Textures.com](https://www.textures.com/library) - Site pra obter texturas
+
 ## Instalação
 
 ## Unreal Engine
@@ -242,13 +245,124 @@ Exemplo:
 UE_LOG(LogTempo, Warning, TEXT("Uma mensagem de LOG"));
 ```
 
-### Acessando o nome de um objeto dentro de um componente
-Podemos acessar as propriedades de um objeto/ator através do seguinte metodo com o seguinte include:
+### Acessando o nome de um objeto
 ```c++
-#include "GameFramework/Actor.h"
+#include "GameFramework/Actor.h" // include necessário
 
-void USuaClase::BeginPlay()
+void UYourClass::BeginPlay()
 {
-  FString NomeObjeto = GetOwner()->GetName();
+  FString ObjectName = GetOwner()->GetName();
 }
 ```
+
+### Acessando localização e transformação do objeto
+```c++
+#include "GameFramework/Actor.h" // include necessário
+
+void UYourClass::BeginPlay()
+{
+  FString ObjectPosition = GetOwner()->GetActorLocation().ToString(); // Localização
+
+  FString ObjectTranform = GetOwner()->GetActorTransform().ToString(); // Transformação
+  FString AnotherObjectPosition = GetOwner()->GetActorTransform().GetLocation().ToString(); // Localização
+}
+```
+
+### Organização
+Quando se cria um novo projeto, após salvar a cena, crie uma pasta em **Content** chamada **Levels** e mova a cena pra ela.
+
+<div align='center'>
+  <img height="500" src="imagens/8.png">
+</div>
+
+<div align='center'>
+  <img height="200" src="imagens/9.png">
+</div>
+
+### Importando Meshes Personalizados
+Para adicionar meshes a sua cena, no Content Browser, clique em **Import** > **Import To**. Então selecione os arquivos para serem adicionados, e depois de clicar em **Open** irá aparecer o menu de importação do FBX. Se ainda não for trabalhar com as colisões do Mesh, é bom deixar marcado a opção **Generate Missing Collisions**:
+
+<div align='center'>
+  <img height="400" src="imagens/10.png">
+</div>
+
+### Criando um material
+Para criar um material rapidamente, basta arrastar uma textura para o mesh e então será criado um novo material.
+
+### Corrigindo problemas de textura em um Material
+Para abrir o editor de Material, podemos dar dois cliques em um Material, e vamos para a seguinte janela de programação visual do Material:
+
+<div align='center'>
+  <img height="400" src="imagens/11.png">
+</div>
+
+Então deletamos a textura associada:
+
+<div align='center'>
+  <img height="400" src="imagens/12.png">
+</div>
+
+E adicionamos outra clicando em **Base Color** arrastando para o lado, no qual abrira uma caixa de busca, e por fim digitamos **Texture** e escolhemos **TextureSample**.
+
+<div align='center'>
+  <img height="400" src="imagens/13.png">
+</div>
+
+Finalmente selecionamos a textura desejada e aplicamos ao nosso Material.
+
+<div align='center'>
+  <img height="400" src="imagens/14.png">
+</div>
+
+Podemos também adicionar novas texturas aos Meshs somente arrastando elas da area **Contents** e puxando para o Mesh.
+
+##### É recomendado que se crie novas instancias de um material ao invés de aplicar texturas diretamente ou adicionar ao Mesh, porque assim conseguimos editar unicamente mesh com mesmo material e aplicar diferentes resultados de acordo com cada instancia do material. Para isso clique no material e escolha *Create Material Instance*
+
+<div align='center'>
+  <img height="400" src="imagens/15.png">
+</div>
+
+### Atribuindo um material padrão ao mesh
+Podemos adicionar um material padrão a um mesh e toda vez que criarmos aquele mesh na cena, ele ja vai estar com o material. Para isso deve dar dois cliques no mesh, e então escolher o material desejado:
+
+<div align='center'>
+  <img height="400" src="imagens/16.png">
+</div>
+
+### Redimensionando texturas
+#### Expondo parametros para configuração
+Clicado duas vezes no material, e depois criado um componente através de **UVs**. O nome do componente é **TextureCoordinate**.
+
+<div align='center'>
+  <img height="400" src="imagens/17.png">
+</div>
+
+Depois clicamos na area e inserimos outro componente, o **ScalarParameter**. E então o renomeamos para TextureScale, e em seguida definimos seu **Default Value** em 1.0.
+
+<div align='center'>
+  <img height="400" src="imagens/18.png">
+</div>
+
+Em seguida criamos outro componente chamado **Multiply**.
+
+<div align='center'>
+  <img height="400" src="imagens/19.png">
+</div>
+
+E finalmente realizamos as seguintes conexões: Saída de **Multiply** em **Texture Sample**; Saída de **TexCoord** em **Multiply**; e Saída de **Texture Scale** em **Multiply**.
+
+<div align='center'>
+  <img height="400" src="imagens/20.png">
+</div>
+
+Com isso cada instancia do material ganha a seguinte propriedade:
+
+<div align='center'>
+  <img height="200" src="imagens/21.png">
+</div>
+
+Através do componente **AppendVector** conseguimos controlar a escala da textura em X e Y:
+
+<div align='center'>
+  <img height="300" src="imagens/22.png">
+</div>
