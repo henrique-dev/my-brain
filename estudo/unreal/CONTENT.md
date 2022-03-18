@@ -227,3 +227,28 @@ Abra o UnrealEngine novamente e você devera ver a seguinte mensagem, no qual de
 <div align='center'>
   <img src="imagens/6.png">
 </div>
+
+### Mensagens de Log
+Podemos gerar mensagens de log em tempo de execução utilizando as classes de log do Unreal, através de:
+```c++
+UE_LOG(Categoria, Verbosidade, Mensagem)
+```
+No qual:
+- Category: Onde o log será gerado, podendo ser ```LogTemp``` (Log temporário)
+- Verbosity: Tipo de log, podendo ser ```Warning```(Amarelo), ```Error```(Vermelho), ```Display```(Cinza).
+- Mensagem: A mensagem a ser descrita no log.
+Exemplo:
+```c++
+UE_LOG(LogTempo, Warning, TEXT("Uma mensagem de LOG"));
+```
+
+### Acessando o nome de um objeto dentro de um componente
+Podemos acessar as propriedades de um objeto/ator através do seguinte metodo com o seguinte include:
+```c++
+#include "GameFramework/Actor.h"
+
+void USuaClase::BeginPlay()
+{
+  FString NomeObjeto = GetOwner()->GetName();
+}
+```
