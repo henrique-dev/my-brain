@@ -1,5 +1,5 @@
 # Linux Tips
-Uma coleção de artigos, dicas e tutoriais importantes relacionados ao Linux (Debian 10 e 11)
+Uma coleção de artigos, dicas e tutoriais importantes relacionados ao Linux (Debian 10)
 
 ## Geral
 - [Como adicionar um usuário ao grupo sudo](geral/README.md#como-adicionar-um-usuário-ao-grupo-sudo)
