@@ -9,3 +9,4 @@ Histórico e anotações sobre meus estudos acerca das seguintes ferramentas e t
 
 ## Linguagens de programação
 - ### [C++](cplusplus/README.md)
+- ### [JavaScript](javascript/README.md)
