@@ -330,7 +330,7 @@ Podemos adicionar um material padrão a um mesh e toda vez que criarmos aquele m
 </div>
 
 ### Redimensionando texturas
-#### Expondo parametros para configuração
+#### Expondo parametros do mesh para o editor
 Clicado duas vezes no material, e depois criado um componente através de **UVs**. O nome do componente é **TextureCoordinate**.
 
 <div align='center'>
@@ -366,3 +366,156 @@ Através do componente **AppendVector** conseguimos controlar a escala da textur
 <div align='center'>
   <img height="300" src="imagens/22.png">
 </div>
+
+### Rotacionando um ator
+Podemos rotacionalo através do seguinte método:
+```c++
+GetOwner()->SetActorRotation(CurrentRotation);
+```
+Obs.: Ao pegar a rotação de um ator, se ela chegar ou ultrapassar 180°, será retornado um valor negativo. Para contornar isso, pode ser normalizar esse rotação da seguinte forma:
+```c++
+FRotator CurrentRotation = GetOwner()->GetActorRotation();
+if (CurrentRotation.Yaw < 0) {
+  CurrentRotation.Yaw = 180.f + FMath::Abs(CurrentRotation.Yaw + 180.f);
+}
+```
+
+Existem alguns métodos de interpolação que podemos usar para aplicar o efeito de abrir a porta:
+```c++
+...
+float CurrentYaw = FMath::FInterpConstantTo(CurrentRotation.Yaw, 90, DeltaTime, 45.0F); // DEPENDE DO TEMPO E NÃO DA TAXA DE QUADORS
+float CurrentYaw = FMath::FInterpTo(CurrentRotation.Yaw, this->TargetCloseYaw, DeltaTime, 2.0F); // DEPENDE DO TEMPO E NÃO DA TAXA DE QUADORS
+float CurrentYaw = FMath::Lerp(CurrentRotation.Yaw, this->TargetCloseYaw, 0.01f); // DEPENDE DA TAXA DE QUADROS
+...
+```
+
+Neste exemplo será usado o mesh de uma porta. Primeiro é necessário definir o tipo de mobilidade do objeto como **Movable**:
+
+<div align='center'>
+  <img height="300" src="imagens/23.png">
+</div>
+
+Em seguida adicionamos o componente **OpenDoor** a este ator.
+
+>Opendoor.h
+```c++
+public:
+  ...
+  void OpenDoor(float DeltaTime);
+	void CloseDoor(float DeltaTime);
+	FRotator GetActorRotation();
+  ...
+
+private:
+  ...
+  bool DoorOpened = false;
+	bool DoorClosed = false;
+	bool DoorAction = false;
+	float InitialYaw = 0.0f;
+  float TargetOpenYaw;
+	float TargetCloseYaw = 0.0f;
+	float CurrentYaw = 0.0;
+  ...
+};
+```
+
+> OpenDoor.cpp
+```c++
+
+...
+#include "Math/UnrealMathUtility.h"
+...
+
+void UOpenDoor::BeginPlay()
+{
+	...
+	float X = GetOwner()->GetActorForwardVector().X;
+	float Y = GetOwner()->GetActorForwardVector().Y;
+	float Hip = FMath::Sqrt(FMath::Pow(X, 2) + FMath::Pow(Y, 2));
+	float Sin = Y / Hip;
+	float Degree = FMath::RadiansToDegrees( FMath::Asin(Sin) );
+
+	this->InitialYaw = Degree;
+	this->CurrentYaw = this->InitialYaw;
+	this->TargetCloseYaw = this->InitialYaw;
+	this->TargetOpenYaw = this->InitialYaw + 90.f;
+	this->DoorOpened = false;
+	this->DoorClosed = true;
+	this->DoorAction = false;
+  ...
+}
+
+...
+void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
+{
+	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+
+	if (!this->DoorAction && !this->DoorOpened)
+	{
+		this->OpenDoor(DeltaTime);
+	}
+	if (!this->DoorAction && !this->DoorClosed)
+	{
+		this->CloseDoor(DeltaTime);
+	}
+}
+
+void UOpenDoor::OpenDoor(float DeltaTime)
+{
+	FRotator CurrentRotation = GetActorRotation();
+
+	this->CurrentYaw = FMath::FInterpConstantTo(CurrentRotation.Yaw, TargetOpenYaw, DeltaTime, 45.0F);
+	CurrentRotation.Yaw = this->CurrentYaw;
+
+	if (CurrentRotation.Yaw >= this->TargetOpenYaw) {
+		this->DoorClosed = false;
+		this->DoorOpened = true;
+		this->DoorAction = false;
+	}
+
+	GetOwner()->SetActorRotation(CurrentRotation);
+}
+
+void UOpenDoor::CloseDoor(float DeltaTime)
+{
+	FRotator CurrentRotation = GetActorRotation();
+	this->CurrentYaw = FMath::FInterpConstantTo(CurrentRotation.Yaw, TargetCloseYaw, DeltaTime, 45.0F);
+	CurrentRotation.Yaw = this->CurrentYaw;
+
+	if (CurrentRotation.Yaw <= this->TargetCloseYaw + 2.f) {
+		this->DoorClosed = true;
+		this->DoorOpened = false;
+		this->DoorAction = false;
+	}
+
+	GetOwner()->SetActorRotation(CurrentRotation);
+}
+
+FRotator UOpenDoor::GetActorRotation()
+{
+	FRotator CurrentRotation = GetOwner()->GetActorRotation();
+	if (CurrentRotation.Yaw < 0) {
+		CurrentRotation.Yaw = 180.f + FMath::Abs(CurrentRotation.Yaw + 180.f);
+	}
+	return CurrentRotation;
+}
+...
+```
+
+### Colisão de objetos
+Existem algumas formas de trabalharmos com colisão:
+
+Usar colisão complexa, no qual é criado um colisor a partir dos dados reais da geometria. Isso é muito caro em termos de processamento porque conforme suas cenas ficam maiores, podemos esquecer que fizemos isso e acabamos criando mais, deixando talvez o processamento do jogo bem lento.
+
+Usar o BSP e converter o objeto para um mesh estatico e posicionalo onde se deseja trabalhar com a colisão deixando tudo bem simples. Caso o modelo seja relaticamente simples pode se criar a colisão a partir de um modelo primitivo mesmo.
+
+Usar as colisões vindas do proprio artista do mesh.
+
+Para abordar os dois primeiros tipos vamos clicar duas vezes do mesh para ter acesso a ferramenta de edição dele no qual poderemos trabalhar com colisões no mesmo.
+
+<div align='center'>
+  <img height="400" src="imagens/24.png">
+</div>
+
+### Redimensionando texturas
+#### Expondo parametros do mesh para o editor
