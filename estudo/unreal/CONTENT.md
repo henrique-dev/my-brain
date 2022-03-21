@@ -368,6 +368,7 @@ Através do componente **AppendVector** conseguimos controlar a escala da textur
 </div>
 
 ### Rotacionando um ator
+<<<<<<< HEAD
 Podemos rotacionalo através do seguinte método:
 ```c++
 GetOwner()->SetActorRotation(CurrentRotation);
@@ -390,6 +391,19 @@ float CurrentYaw = FMath::Lerp(CurrentRotation.Yaw, this->TargetCloseYaw, 0.01f)
 ```
 
 Neste exemplo será usado o mesh de uma porta. Primeiro é necessário definir o tipo de mobilidade do objeto como **Movable**:
+=======
+Podemos rotacionalo através dos seguintes métodos:
+```c++
+FRotator CurrentRotation = GetOwner()->GetActorRotation();
+float CurrentYaw = FMath::FInterpConstantTo(CurrentRotation.Yaw, 90, DeltaTime, 45.0F); // DEPENDE DO TEMPO E NÃO DA TAXA DE QUADORS
+// float CurrentYaw = FMath::FInterpTo(CurrentRotation.Yaw, this->TargetCloseYaw, DeltaTime, 2.0F); // DEPENDE DO TEMPO E NÃO DA TAXA DE QUADORS
+// float CurrentYaw = FMath::Lerp(CurrentRotation.Yaw, this->TargetCloseYaw, 0.01f); // DEPENDE DA TAXA DE QUADROS
+CurrentRotation.Yaw = CurrentYaw;
+GetOwner()->SetActorRotation(CurrentRotation);
+```
+
+Neste exemplo será usado o mesh de uma porta. Primeiro é necessário o tipo de mobilidade do objeto como **Movable**:
+>>>>>>> c39481a5faef815ed76893264ae5835628b2920e
 
 <div align='center'>
   <img height="300" src="imagens/23.png">
@@ -399,6 +413,7 @@ Em seguida adicionamos o componente **OpenDoor** a este ator.
 
 >Opendoor.h
 ```c++
+<<<<<<< HEAD
 public:
   ...
   void OpenDoor(float DeltaTime);
@@ -408,6 +423,37 @@ public:
 
 private:
   ...
+=======
+// Fill out your copyright notice in the Description page of Project Settings.
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "Components/ActorComponent.h"
+#include "OpenDoor.generated.h"
+
+
+UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+class TESTE_API UOpenDoor : public UActorComponent
+{
+	GENERATED_BODY()
+
+public:
+	// Sets default values for this component's properties
+	UOpenDoor();
+
+protected:
+	// Called when the game starts
+	virtual void BeginPlay() override;
+
+public:
+	// Called every frame
+	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+  void OpenDoor(float DeltaTime);
+	void CloseDoor(float DeltaTime);
+
+private:
+>>>>>>> c39481a5faef815ed76893264ae5835628b2920e
   bool DoorOpened = false;
 	bool DoorClosed = false;
 	bool DoorAction = false;
@@ -415,12 +461,16 @@ private:
   float TargetOpenYaw;
 	float TargetCloseYaw = 0.0f;
 	float CurrentYaw = 0.0;
+<<<<<<< HEAD
   ...
+=======
+>>>>>>> c39481a5faef815ed76893264ae5835628b2920e
 };
 ```
 
 > OpenDoor.cpp
 ```c++
+<<<<<<< HEAD
 
 ...
 #include "Math/UnrealMathUtility.h"
@@ -429,6 +479,30 @@ private:
 void UOpenDoor::BeginPlay()
 {
 	...
+=======
+// Fill out your copyright notice in the Description page of Project Settings.
+
+
+#include "OpenDoor.h"
+#include "Math/UnrealMathUtility.h"
+
+// Sets default values for this component's properties
+UOpenDoor::UOpenDoor()
+{
+	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
+	// off to improve performance if you don't need them.
+	PrimaryComponentTick.bCanEverTick = true;
+
+	// ...
+}
+
+
+// Called when the game starts
+void UOpenDoor::BeginPlay()
+{
+	Super::BeginPlay();
+
+>>>>>>> c39481a5faef815ed76893264ae5835628b2920e
 	float X = GetOwner()->GetActorForwardVector().X;
 	float Y = GetOwner()->GetActorForwardVector().Y;
 	float Hip = FMath::Sqrt(FMath::Pow(X, 2) + FMath::Pow(Y, 2));
@@ -442,10 +516,17 @@ void UOpenDoor::BeginPlay()
 	this->DoorOpened = false;
 	this->DoorClosed = true;
 	this->DoorAction = false;
+<<<<<<< HEAD
   ...
 }
 
 ...
+=======
+}
+
+
+// Called every frame
+>>>>>>> c39481a5faef815ed76893264ae5835628b2920e
 void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
@@ -462,10 +543,17 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 
 void UOpenDoor::OpenDoor(float DeltaTime)
 {
+<<<<<<< HEAD
 	FRotator CurrentRotation = GetActorRotation();
 
 	this->CurrentYaw = FMath::FInterpConstantTo(CurrentRotation.Yaw, TargetOpenYaw, DeltaTime, 45.0F);
 	CurrentRotation.Yaw = this->CurrentYaw;
+=======
+	FRotator CurrentRotation = GetOwner()->GetActorRotation();
+	this->CurrentYaw = FMath::FInterpConstantTo(CurrentRotation.Yaw, -90, DeltaTime, 45.0F);
+	CurrentRotation.Yaw = this->CurrentYaw;
+	UE_LOG(LogTemp, Warning, TEXT("fechando: %f"), this->CurrentYaw);
+>>>>>>> c39481a5faef815ed76893264ae5835628b2920e
 
 	if (CurrentRotation.Yaw >= this->TargetOpenYaw) {
 		this->DoorClosed = false;
@@ -478,8 +566,14 @@ void UOpenDoor::OpenDoor(float DeltaTime)
 
 void UOpenDoor::CloseDoor(float DeltaTime)
 {
+<<<<<<< HEAD
 	FRotator CurrentRotation = GetActorRotation();
 	this->CurrentYaw = FMath::FInterpConstantTo(CurrentRotation.Yaw, TargetCloseYaw, DeltaTime, 45.0F);
+=======
+	FRotator CurrentRotation = GetOwner()->GetActorRotation();
+	this->CurrentYaw = FMath::FInterpConstantTo(CurrentRotation.Yaw, 90, DeltaTime, 45.0F);
+	UE_LOG(LogTemp, Warning, TEXT("fechando: %f"), this->CurrentYaw);
+>>>>>>> c39481a5faef815ed76893264ae5835628b2920e
 	CurrentRotation.Yaw = this->CurrentYaw;
 
 	if (CurrentRotation.Yaw <= this->TargetCloseYaw + 2.f) {
@@ -490,6 +584,7 @@ void UOpenDoor::CloseDoor(float DeltaTime)
 
 	GetOwner()->SetActorRotation(CurrentRotation);
 }
+<<<<<<< HEAD
 
 FRotator UOpenDoor::GetActorRotation()
 {
@@ -519,3 +614,6 @@ Para abordar os dois primeiros tipos vamos clicar duas vezes do mesh para ter ac
 
 ### Redimensionando texturas
 #### Expondo parametros do mesh para o editor
+=======
+```
+>>>>>>> c39481a5faef815ed76893264ae5835628b2920e
