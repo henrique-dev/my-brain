@@ -15,6 +15,20 @@ Seu núcleo é escrito em C++, possibilitando a portabilidade. Suporta múltipla
 - Variáveis em CamelCase. Ex.: ```int UmaVariavel = 10;```
 - Variáveis booleanas começam com b. Ex.: ```bool bGameOver = false;```
 
+### Códigos úteis
+#### Angulo atual de um objeto dado x e y
+```c++
+float X = GetOwner()->GetActorForwardVector().X;
+float Y = GetOwner()->GetActorForwardVector().Y;
+float Hip = FMath::Sqrt(FMath::Pow(X, 2) + FMath::Pow(Y, 2));
+float Sin = Y / Hip;
+float Degree = FMath::RadiansToDegrees( FMath::Asin(Sin) );
+if (Sin < 0)
+{
+  Degree = 180.f + (FMath::Abs(Degree));
+}
+```
+
 ### Controlando a ViewPort
 Pode se ter mais de um viewport. É bem útil quando se esta trabalhando em mais de um Level. Para ativar outras pode se ir em **Window** > **ViewPorts**.
 
@@ -318,7 +332,7 @@ Finalmente selecionamos a textura desejada e aplicamos ao nosso Material.
 
 Podemos também adicionar novas texturas aos Meshs somente arrastando elas da area **Contents** e puxando para o Mesh.
 
-##### É recomendado que se crie novas instancias de um material ao invés de aplicar texturas diretamente ou adicionar ao Mesh, porque assim conseguimos editar unicamente mesh com mesmo material e aplicar diferentes resultados de acordo com cada instancia do material. Para isso clique no material e escolha *Create Material Instance*
+**É recomendado que se crie novas instancias de um material ao invés de aplicar texturas diretamente ou adicionar ao Mesh, porque assim conseguimos editar unicamente mesh com mesmo material e aplicar diferentes resultados de acordo com cada instancia do material. Para isso clique no material e escolha Create Material Instance**
 
 <div align='center'>
   <img height="400" src="imagens/15.png">
@@ -385,8 +399,8 @@ if (CurrentRotation.Yaw < 0) {
 Existem alguns métodos de interpolação que podemos usar para aplicar o efeito de abrir a porta:
 ```c++
 ...
-float CurrentYaw = FMath::FInterpConstantTo(CurrentRotation.Yaw, 90, DeltaTime, 45.0F); // DEPENDE DO TEMPO E NÃO DA TAXA DE QUADORS
-float CurrentYaw = FMath::FInterpTo(CurrentRotation.Yaw, this->TargetCloseYaw, DeltaTime, 2.0F); // DEPENDE DO TEMPO E NÃO DA TAXA DE QUADORS
+float CurrentYaw = FMath::FInterpConstantTo(CurrentRotation.Yaw, 90, DeltaTime, 45.0F); // Interpolação Linear - DEPENDE DO TEMPO E NÃO DA TAXA DE QUADORS
+float CurrentYaw = FMath::FInterpTo(CurrentRotation.Yaw, this->TargetCloseYaw, DeltaTime, 2.0F); // Interpolação Exponencial - DEPENDE DO TEMPO E NÃO DA TAXA DE QUADORS
 float CurrentYaw = FMath::Lerp(CurrentRotation.Yaw, this->TargetCloseYaw, 0.01f); // DEPENDE DA TAXA DE QUADROS
 ...
 ```
@@ -519,5 +533,146 @@ Para abordar os dois primeiros tipos vamos clicar duas vezes do mesh para ter ac
   <img height="400" src="imagens/24.png">
 </div>
 
-### Redimensionando texturas
-#### Expondo parametros do mesh para o editor
+Se clicarmos em **Collision** e depois em **Simple Collision**:
+
+<div align='center'>
+  <img height="300" src="imagens/25.png">
+</div>
+
+Poderemos ver uma caixa em verde ao redor do nosso modelo, porém se não tivermos a colisão no nosso modelo vinda de quem fez o modelo, não há nada dentro porque as formas convexas são as mais dificeis de calcular em termos de fisica. Portanto uma colisão simples será assim, colocando uma caixa delimitadora ao redor fazendo com que as partes convexas não possam ser atravessadas.
+
+<div align='center'>
+  <img height="300" src="imagens/26.png">
+</div>
+
+Se escolhermos a **Complex Collision** já conseguimos observar que ela consegue delimitar a partes convexas do modelo, e com isso tendo muito mais geometria na colisão podendo assim compromoter o desempenho do jogo.
+
+<div align='center'>
+  <img height="300" src="imagens/27.png">
+</div>
+
+Para fins de teste, a melhor maneira seria marcar o tipo de colisão como **Complex Collision**, e depois na esquerda escolher a opção **Use Complex Collision as Simple**.
+
+<div align='center'>
+  <img height="400" src="imagens/28.png">
+</div>
+
+### Expondo parametros do código para o editor
+Para expor parametros do código e editarmos no editor, colocamos o seguinte marcador acima dos atributos:
+```c++
+UPROPERTY(EditAnywhere)
+float TargetOpenYaw;
+```
+E depois de compilarmos, conseguimos edita-lo selecionando o componente e então logo abaixo podemos ver nosso atributo.
+
+<div align='center'>
+  <img height="400" src="imagens/29.png">
+</div>
+
+### Convenção para nomear os recursos
+#### Diretorio de recursos
+##### Mapas
+
+| | |
+--- | ---
+Content\Maps | parent maps folder
+............ Maps\Episode(_Number) | game episodes, where (_Number) is 01, 02, 03, etc
+............ Maps\TestMaps | test maps, maps prototypes and other levels not for production
+
+##### Recursos
+
+| | |
+--- | ---
+Content\Base | basic materials, material functions and other “foundation” assets
+Content\Characters | folder for characters
+............ Characters\NPC | NPCs
+............ Characters\Player | player character(s)
+Content\Dev | development assets, like objects icons, special meshes and textures, etc
+Content\Effects | various shared effects
+Content\Environment | environment assets
+............ Environment\Background | backgrounds
+............ Environment\Buildings | buildings (simple or procedural)
+............ Environment\Foliage | foliage
+............ Environment\Props | various props
+............ Environment\Sky | skies
+............ Environment\Landscape | terrains assets
+............ Environment\Water | water meshes and materials
+Content\Gameplay | assets for various gameplay purposes
+Content\PostProcess | post process chains and it’s assets
+Content\Sound | sounds and sound cues
+Content\UI | UI assets
+Content\Vehicles | vehicles with effects
+Content\Weapons | weapons with effects
+
+#### Diretorios por Categoria
+
+| | |
+--- | ---
+Blueprints | blueprints
+Meshes | static and skeletal meshes, physical assets
+Materials | materials and instances
+Textures | textures
+Animations | animations
+Particles | particle systems
+LensFlares | flares
+Sounds | sounds + cues
+Morphs | morphs
+FaceFX | FaceFX assets
+
+#### Nomeação dos recursos
+Form: (Prefixo_)NomeRecurso(_Numero)(_Sufixo)
+
+Example: T_Rock_01_D
+
+##### Prefixos
+Por uso:
+
+| | |
+--- | ---
+CH_ | Characters
+UI_ | User Interface
+VH_ | Vehicles
+WP_ | Weapons
+
+Por tipo:
+
+| | | | |
+--- | --- | --- | ---
+BP_ | Blueprint | SK_ | Skeletal Mesh
+SM_ | Static Mesh | AD_ | Apex Destructible Asset
+AC_ | Apex Cloth Asset | MT_ | Morph Target
+ST_ | Speed Tree | PS_ | Particle System
+LF_ | Lens Flare | VF_ | Vector Field
+S_ | Sound | SC_ | Sound Cue
+M_ | Material | MI_ | Material Instance
+MITV_ | Material Instance Time Varying | MF_ | Material Function
+MPC_ | Material Parameter Collection | T_ | Texture
+SP_ | Sprite | SS_ | Sprite Sheet
+TC_ | Texture Cube | RT_ | Render Target
+PM_ | Physical Material
+
+##### Sufixos
+Textura:
+
+| | | | |
+--- | --- | --- | ---
+_BC | Base color | _MT | Metallic
+_S | Specular | _R | Roughness
+_N | Normal | _DP | Displacement
+_AO | Ambient Occlusion | _H | Height Map
+_FM | Flow Map | _L | Light Map (fake)
+_M | Mask
+
+Meshs:
+
+| | |
+--- | ---
+_Physics | physics assets (generated name)
+_FaceFX | FaceFx assets
+
+Animações:
+
+| | |
+--- | ---
+_BlendSpace | blend space (generated name)
+_AnimBlueprint | animation blueprint (generated name)
