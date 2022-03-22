@@ -10,7 +10,7 @@ if (ARGV[1] && path = ARGV[0])
         if mark.match?(/^[#]+$/)
           title_with_mark.shift
           title = title_with_mark.join(' ')
-          file_menu.puts "#{((mark.length * 2) + 1).times.to_a.map{|v| ''}.join(' ')}- [#{title}](CONTENT.md##{title.downcase.split(' ').join('-')})"
+          file_menu.puts "#{((mark.length * 2) + 1).times.to_a.map{|v| ''}.join(' ')}- [#{title}](#{ARGV[1]}##{title.downcase.split(' ').join('-')})"
         end
       end
     end
