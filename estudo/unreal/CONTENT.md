@@ -570,6 +570,11 @@ E depois de compilarmos, conseguimos edita-lo selecionando o componente e então
 </div>
 
 ### Convenção para nomear os recursos
+
+<div align='center'>
+  <img height="200" src="imagens/30.png">
+</div>
+
 #### Diretorio de recursos
 ##### Mapas
 
@@ -676,3 +681,71 @@ Animações:
 --- | ---
 _BlendSpace | blend space (generated name)
 _AnimBlueprint | animation blueprint (generated name)
+
+### Trigger Volumes
+Um Trigger Volume possibilita adicionar ações em determinadas situações. Podemos associar a um listener que espera algo ativar (como passar por uma area) para executar algo.
+
+Podemos acessa-los atraves do painel esquerdo em **Place Actors** > **Basic**.
+
+<div align='center'>
+  <img height="400" src="imagens/31.png">
+</div>
+
+Ou simplesmente digitando **Trigger** na caixa de busca
+
+<div align='center'>
+  <img height="400" src="imagens/32.png">
+</div>
+
+Podemos criar apenas arrastando para nossa cena. Uma muita muito importante de se fazer é sempre renomear com o nome apropriado, como um ID.
+
+<div align='center'>
+  <img height="200" src="imagens/33.png">
+</div>
+
+Para vincular ao nosso codigo e possivelmente expormos como parametro no editor precisamos incluir seu header e depois cria-lo no nosso header.
+```c++
+...
+#include "Engine/TriggerVolume.h"
+...
+
+...
+UPROPERTY(EditAnywhere)
+ATriggerVolume* PressurePlate;
+...
+```
+
+Finalmente associamos nosso trigger a porta
+
+<div align='center'>
+  <img height="400" src="imagens/34.png">
+</div>
+
+#### Usando colisão nos volumes
+Existem dois tipos:
+- Polling no qual é checado toda vez se algo aconteceu.
+- Por evento no qual somos notificados quando algo aconteceu.
+
+##### Polling
+Para se fazer dessa forma, precisamos escolher o ator que ira acionar o evento e faremos isso expondo o parametro para o editor
+```c++
+UPROPERTY(EditAnywhere)
+ATriggerVolume* PressurePlate;
+
+UPROPERTY(EditAnywhere)
+AActor* ActorThatOpen;
+```
+
+E então podemos adicionar a seguinte lógica para verificarmos se o ator esta acionando o trigger:
+```c++
+if (PressurePlate && PressurePlate->IsOverlappingActor(ActorThatOpen))
+{
+  ...
+}
+```
+
+Obs.: Durante o teste é necessário escolher o ator que vai acionar o trigger:
+
+<div align='center'>
+  <img height="300" src="imagens/35.png">
+</div>
