@@ -428,8 +428,8 @@ private:
 	bool DoorClosed = false;
 	bool DoorAction = false;
 	float InitialYaw = 0.0f;
-  float TargetOpenYaw;
 	float TargetCloseYaw = 0.0f;
+  float TargetOpenYaw = 90.f;
 	float CurrentYaw = 0.0;
   ...
 };
@@ -445,16 +445,13 @@ private:
 void UOpenDoor::BeginPlay()
 {
 	...
-	float X = GetOwner()->GetActorForwardVector().X;
-	float Y = GetOwner()->GetActorForwardVector().Y;
-	float Hip = FMath::Sqrt(FMath::Pow(X, 2) + FMath::Pow(Y, 2));
-	float Sin = Y / Hip;
-	float Degree = FMath::RadiansToDegrees( FMath::Asin(Sin) );
+	Super::BeginPlay();
 
-	this->InitialYaw = Degree;
+  FRotator CurrentRotation = GetActorRotationYaw(0);
+	this->InitialYaw = CurrentRotation.Yaw;
 	this->CurrentYaw = this->InitialYaw;
 	this->TargetCloseYaw = this->InitialYaw;
-	this->TargetOpenYaw = this->InitialYaw + 90.f;
+	this->TargetOpenYaw += this->InitialYaw;
 	this->DoorOpened = false;
 	this->DoorClosed = true;
 	this->DoorAction = false;
@@ -478,12 +475,11 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 
 void UOpenDoor::OpenDoor(float DeltaTime)
 {
-	FRotator CurrentRotation = GetActorRotation();
+	FRotator CurrentRotation = GetActorRotationYaw(CurrentYaw);
+	CurrentYaw = FMath::FInterpConstantTo(CurrentYaw, TargetOpenYaw, DeltaTime, 45.0F);
+	CurrentRotation.Yaw = CurrentYaw;
 
-	this->CurrentYaw = FMath::FInterpConstantTo(CurrentRotation.Yaw, TargetOpenYaw, DeltaTime, 45.0F);
-	CurrentRotation.Yaw = this->CurrentYaw;
-
-	if (CurrentRotation.Yaw >= this->TargetOpenYaw) {
+	if (CurrentRotation.Yaw >= TargetOpenYaw) {
 		this->DoorClosed = false;
 		this->DoorOpened = true;
 		this->DoorAction = false;
@@ -494,11 +490,11 @@ void UOpenDoor::OpenDoor(float DeltaTime)
 
 void UOpenDoor::CloseDoor(float DeltaTime)
 {
-	FRotator CurrentRotation = GetActorRotation();
-	this->CurrentYaw = FMath::FInterpConstantTo(CurrentRotation.Yaw, TargetCloseYaw, DeltaTime, 45.0F);
-	CurrentRotation.Yaw = this->CurrentYaw;
+	FRotator CurrentRotation = GetActorRotationYaw(CurrentYaw);
+	CurrentYaw = FMath::FInterpConstantTo(CurrentYaw, TargetCloseYaw, DeltaTime, 45.0F);
+	CurrentRotation.Yaw = CurrentYaw;
 
-	if (CurrentRotation.Yaw <= this->TargetCloseYaw + 2.f) {
+	if (CurrentRotation.Yaw <= TargetCloseYaw) {
 		this->DoorClosed = true;
 		this->DoorOpened = false;
 		this->DoorAction = false;
@@ -507,13 +503,18 @@ void UOpenDoor::CloseDoor(float DeltaTime)
 	GetOwner()->SetActorRotation(CurrentRotation);
 }
 
-FRotator UOpenDoor::GetActorRotation()
+FRotator UOpenDoor::GetActorRotationYaw(float LastYaw)
 {
 	FRotator CurrentRotation = GetOwner()->GetActorRotation();
 	if (CurrentRotation.Yaw < 0) {
 		CurrentRotation.Yaw = 180.f + FMath::Abs(CurrentRotation.Yaw + 180.f);
 	}
 	return CurrentRotation;
+}
+
+float UOpenDoor::NormalizeAngle(float Angle)
+{
+	return (float)((int)Angle % 360);
 }
 ...
 ```
