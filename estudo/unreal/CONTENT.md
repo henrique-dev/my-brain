@@ -12,8 +12,8 @@ Seu núcleo é escrito em C++, possibilitando a portabilidade. Suporta múltipla
 
 ## Unreal Engine
 ### Padronização
-- Variáveis em CamelCase. Ex.: ```int UmaVariavel = 10;```
-- Variáveis booleanas começam com b. Ex.: ```bool bGameOver = false;```
+- Variáveis em CamelCase. Ex.: `int UmaVariavel = 10;`
+- Variáveis booleanas começam com b. Ex.: `bool bGameOver = false;`
 
 ### Códigos úteis
 #### Angulo atual de um objeto dado x e y
@@ -74,12 +74,12 @@ O Unreal tem seus próprios tipos.
 </div>
 
 #### FString
-No geral, deve se usar o macro ```TEXT()``` quando for usar variaveis em string. Se não for especificado, o padrão de codificação de caractere será o ANSI, no qual é muito limitado em relação ao suporte de caracteres. Qualquer literal ANSI passado para um FString deve ser convertido pra TCHAR (codificação unicode nativa), então é mais eficiente usar ```TEXT()```.
+No geral, deve se usar o macro `TEXT()` quando for usar variaveis em string. Se não for especificado, o padrão de codificação de caractere será o ANSI, no qual é muito limitado em relação ao suporte de caracteres. Qualquer literal ANSI passado para um FString deve ser convertido pra TCHAR (codificação unicode nativa), então é mais eficiente usar `TEXT()`.
 ```c++
 FString Frase = TEXT("O rato roeu a roupa do rei de Roma");
 ```
 ##### Formatando corretamente
-Podemos usar a função ```Printf``` para formatar valores e adiciona-los em uma string.
+Podemos usar a função `Printf` para formatar valores e adiciona-los em uma string.
 ```c++
 int quantidade = 10;
 FString::Printf(TEXT("Eu tenho %i maças"), quantidade); // Eu tenho 10 maças
@@ -89,7 +89,7 @@ FString::Printf(TEXT("Olá %s"), *palavra); // Olá mundo
 
 FString::Printf(TEXT("Olá %s, eu tenho %i maças"), *palavra, quantidade); // Olá mundo, eu tenho 10 maças
 ```
-- ```Len()``` Retorna a quantidade de caracteres na string.
+- `Len()` Retorna a quantidade de caracteres na string.
 
 #### TCHAR
 ```c++
@@ -97,10 +97,10 @@ const TCHAR HW[] = TEXT("BOLOS");
 ```
 
 #### TArray
-- ```Num()``` Retorna a quantidade de elementos do array.
-- ```Add()``` Adiciona um elemento no final do array.
-- ```Emplace()``` Adiciona um elemento no final do array.
-- ```Remove()``` Remove elementos.
+- `Num()` Retorna a quantidade de elementos do array.
+- `Add()` Adiciona um elemento no final do array.
+- `Emplace()` Adiciona um elemento no final do array.
+- `Remove()` Remove elementos.
 
 ```c++
 const TArray<FString> Palavras = {
@@ -112,18 +112,18 @@ const TArray<FString> Palavras = {
 
 ### Unreal C++ Classes e metodos
 #### FMath
-```FMath::RandRange(0, 10)``` Retorna um número aleatorio que seja 0 ou 10, ou entre 0 e 10.
+`FMath::RandRange(0, 10)` Retorna um número aleatorio que seja 0 ou 10, ou entre 0 e 10.
 
 ### Alguns metodos pra ajudar
 #### Carregando dados a partir de um arquivo
-Em vez de aumentar massivamente os tempos de execução criando conteudo pode se mudar isso carregando dados diretamente de arquivos com o metodo ```FFileHelper::LoadFileToStringArray```. O exemplo a seguir carrega uma lista de palavras em um array.
+Em vez de aumentar massivamente os tempos de execução criando conteudo pode se mudar isso carregando dados diretamente de arquivos com o metodo `FFileHelper::LoadFileToStringArray`. O exemplo a seguir carrega uma lista de palavras em um array.
 ```c++
 TArray<FString> Palavras;
 const FString WordListPath = FPaths::ProjectContentDir() / TEXT("WordLists/HiddenWordList.txt");
 FFileHelper::LoadFileToStringArray(Palavras, *WordListPath);
 ```
 ##### Carregando dados com um criterio
-Podemos usar o metodo anterior pra popular um array baseado em um criterio, apenas usando C++ e lambdas. ```LoadFileToStringArrayWithPredicate``` pode obter um argumento adicional na forma de função que recebe uma string e retorna um booleano. O exemplo a seguir adiciona ao array somente palavras que tenham menos de 10 caracteres dado o arquivo contendo os dados.
+Podemos usar o metodo anterior pra popular um array baseado em um criterio, apenas usando C++ e lambdas. `LoadFileToStringArrayWithPredicate` pode obter um argumento adicional na forma de função que recebe uma string e retorna um booleano. O exemplo a seguir adiciona ao array somente palavras que tenham menos de 10 caracteres dado o arquivo contendo os dados.
 ```c++
 TArray<FString> Palavras;
 const FString WordListPath = FPaths::ProjectContentDir() / TEXT("WordLists/HiddenWordList.txt");
@@ -183,7 +183,7 @@ public:
 
 };
 ```
-É importante ressaltar que a linha de include da sua propria classe ```SuaClasse.generate.h``` deve sempre ficar abaixo das inclusões das classes do Unreal.
+É importante ressaltar que a linha de include da sua propria classe `SuaClasse.generate.h` deve sempre ficar abaixo das inclusões das classes do Unreal.
 ```c++
 ...
 #include "CoreMinimal.h"
@@ -230,16 +230,16 @@ void UTeste::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponent
 
 
 ```
-O método ```BeginPlay()``` é chamado sempre que o jogo começa.
+O método `BeginPlay()` é chamado sempre que o jogo começa.
 
-O método ```TickComponent()``` é chamado a cada quadro do jogo.
+O método `TickComponent()` é chamado a cada quadro do jogo.
 
-No método construtor, a instrução ```PrimaryComponentTick.bCanEverTick = true;``` indica que o método ```TickComponent``` sempre será chamado a cada quadro. É possível desativar atribuindo como ```false```.
+No método construtor, a instrução `PrimaryComponentTick.bCanEverTick = true;` indica que o método `TickComponent` sempre será chamado a cada quadro. É possível desativar atribuindo como `false`.
 
 ### Deletando uma classe
-É preciso navegar até onde o projeto está localizado e excluir os arquivos manualmente. Eles ficam em ```.../raiz_do_projeto/Source/NomeDoProjeto/```
+É preciso navegar até onde o projeto está localizado e excluir os arquivos manualmente. Eles ficam em `.../raiz_do_projeto/Source/NomeDoProjeto/`
 
-Depois é necessário apagar o diretorio **Binaries** que fica em ```.../raiz_do_projeto/Binaries```. Lembre-se de fechar o UnrealEngine antes.
+Depois é necessário apagar o diretorio **Binaries** que fica em `.../raiz_do_projeto/Binaries`. Lembre-se de fechar o UnrealEngine antes.
 
 Abra o UnrealEngine novamente e você devera ver a seguinte mensagem, no qual devera clicar em sim, depois de abrir seu projeto:
 
@@ -253,8 +253,8 @@ Podemos gerar mensagens de log em tempo de execução utilizando as classes de l
 UE_LOG(Categoria, Verbosidade, Mensagem)
 ```
 No qual:
-- Category: Onde o log será gerado, podendo ser ```LogTemp``` (Log temporário)
-- Verbosity: Tipo de log, podendo ser ```Warning```(Amarelo), ```Error```(Vermelho), ```Display```(Cinza).
+- Category: Onde o log será gerado, podendo ser `LogTemp` (Log temporário)
+- Verbosity: Tipo de log, podendo ser `Warning`(Amarelo), `Error`(Vermelho), `Display`(Cinza).
 - Mensagem: A mensagem a ser descrita no log.
 Exemplo:
 ```c++
