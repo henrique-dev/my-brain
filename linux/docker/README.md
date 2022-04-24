@@ -674,26 +674,6 @@ config.generators do |g|
   g.template_engine :slim
 end
 ```
-### Configurar o Rspec com o DatabaseCleaner
-Adicione as seguintes linhas:
->nome_aplicacao/spec/spec_helper.rb
-```ruby
-RSpec.configure do |config|
-  ...
-  config.before(:suite) do
-    DatabaseCleaner.strategy = :deletion
-  end
-
-  config.before(:each) do
-    DatabaseCleaner.start
-  end
-
-  config.after(:each) do
-    DatabaseCleaner.clean
-  end
-  ...
-end
-```
 
 ### Testando a aplicação (opcional)
 ```
