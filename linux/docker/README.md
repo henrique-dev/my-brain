@@ -476,9 +476,9 @@ volumes:
 ### Colocando tudo pra funcionar
 ```
 docker-compose build
+docker-compose up
 docker-compose exec nome_aplicacao rails db:create
 docker-compose exec nome_aplicacao rails db:migrate
-docker-compose up
 ```
 
 
