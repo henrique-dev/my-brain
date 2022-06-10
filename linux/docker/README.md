@@ -315,7 +315,9 @@ CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
 > Dockerfile.nginx
 ```Dockerfile
 FROM nginx:latest
+RUN apt-get update -qq && apt-get -y install apache2-utils
 COPY reverse-proxy.conf /etc/nginx/conf.d/reverse-proxy.conf
+RUN mkdir -p /opt/app/log
 EXPOSE 8020
 STOPSIGNAL SIGTERM
 CMD ["nginx", "-g", "daemon off;"]
@@ -336,8 +338,8 @@ server {
   keepalive_timeout 5;
   # path for static files
   root /opt/app/public;
-  # access_log /opt/app/log/nginx.access.log;
-  # error_log /opt/app/log/nginx.error.log info;
+  access_log /opt/app/log/nginx.access.log;
+  error_log /opt/app/log/nginx.error.log info;
   # this rewrites all the requests to the maintenance.html
   # page if it exists in the doc root. This is for capistrano's
   # disable web task
