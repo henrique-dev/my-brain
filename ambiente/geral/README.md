@@ -51,10 +51,10 @@ Cole o seguinte conteúdo em cada arquivo:
       "name": "Compile C++ using MSVC",
       "type": "cppvsdbg",
       "request": "launch",
-      "program": "${fileDirname}\\build\\${fileBasenameNoExtension}.exe",
+      "program": "${workspaceFolder}\\build\\${fileBasenameNoExtension}.exe",
       "args": [],
       "stopAtEntry": false,
-      "cwd": "${fileDirname}\\build",
+      "cwd": "${workspaceFolder}\\build",
       "environment": [],
       "console": "externalTerminal",
       "preLaunchTask": "Compile C++ using MSVC"
@@ -121,11 +121,22 @@ Cole o seguinte conteúdo em cada arquivo:
 {
 	"version": "2.0.0",
 	"tasks": [
+    {
+			"label": "Clear the folder that contain build files",
+			"type": "shell",
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"windows": {
+				"command": "cmd /C if exist .\\build del /q .\\build\\*"
+			}
+		},
 		{
+      "dependsOn": "Clear the folder that contain build files",
 			"label": "Create a folder to contain build files",
 			"type": "shell",
 			"options": {
-				"cwd": "${fileDirname}"
+				"cwd": "${workspaceFolder}"
 			},
 			"windows": {
 				"command": "cmd /C if not exist .\\build mkdir .\\build"
@@ -141,12 +152,12 @@ Cole o seguinte conteúdo em cada arquivo:
 				"/EHsc",
 				"/nologo",
 				"/Fe:",
-				"${fileDirname}\\build\\${fileBasenameNoExtension}.exe",
+				"${workspaceFolder}\\build\\${fileBasenameNoExtension}.exe",
 				"${fileDirname}\\*.cpp",
 				"-Wall"
 			],
 			"options": {
-				"cwd": "${fileDirname}\\build"
+				"cwd": "${workspaceFolder}\\build"
 			},
 			"problemMatcher": [
 				"$msCompile"
