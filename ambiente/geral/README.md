@@ -56,8 +56,7 @@ Cole o seguinte conteúdo em cada arquivo:
             "stopAtEntry": false,
             "cwd": "${fileDirname}\\build",
             "environment": [],
-            "console": "externalTerminal",
-            "preLaunchTask": "C/C++: cl.exe arquivo de build ativo"
+            "console": "externalTerminal",            
         }
     ]
 }
