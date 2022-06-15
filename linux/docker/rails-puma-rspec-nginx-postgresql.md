@@ -41,6 +41,7 @@ gem 'pry-rails', '~> 0.3.9' # opcional
 # Slim is a template language whose goal is reduce the syntax to the essential parts without becoming cryptic.
 gem 'slim', '~> 4.1' # opcional
 
+# Provides the generator settings required for Rails to use Slim
 gem 'slim-rails', '~> 3.5', '>= 3.5.1' # opcional
 
 group :development, :test do
