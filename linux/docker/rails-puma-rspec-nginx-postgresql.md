@@ -23,23 +23,43 @@ Adicione as seguintes gems na aplicação.
 > nome_aplicacao/Gemfile
 
 ```ruby
-gem 'pg', '~> 1.3', '>= 1.3.4' # se ainda não estiver
-gem 'redis-rails', '~> 5.0', '>= 5.0.1'
-gem 'sidekiq', '~> 4.1', '>= 4.1.2'
-gem 'awesome_print', '~> 1.8' # opcional
-gem 'pry-rails', '~> 0.3.3' # opcional
-gem 'slim', '~> 3.0', '>= 3.0.6' # opcional
-gem 'slim-rails', '~> 3.1', '>= 3.1.1' # opcional
+# Pg is the Ruby interface to the PostgreSQL RDBMS. It works with PostgreSQL 9.3 and later.
+gem 'pg', '~> 1.3', '>= 1.3.5' # se ainda não estiver
+
+# Redis for Ruby on Rails
+gem 'redis-rails', '~> 5.0', '>= 5.0.2'
+
+# Simple, efficient background processing for Ruby.
+gem 'sidekiq', '~> 6.5', '>= 6.5.1'
+
+# Great Ruby debugging companion: pretty print Ruby objects to visualize their structure. Supports custom object formatting via plugins
+gem 'awesome_print', '~> 1.9', '>= 1.9.2' # opcional
+
+# Use Pry as your rails console
+gem 'pry-rails', '~> 0.3.9' # opcional
+
+# Slim is a template language whose goal is reduce the syntax to the essential parts without becoming cryptic.
+gem 'slim', '~> 4.1' # opcional
+
+gem 'slim-rails', '~> 3.5', '>= 3.5.1' # opcional
 
 group :development, :test do
-  gem 'rubocop', '~> 1.25', '>= 1.25.1'
+  # RuboCop is a Ruby code style checking and code formatting tool. It aims to enforce the community-driven Ruby Style Guide.
+  gem 'rubocop', '~> 1.30', '>= 1.30.1'
+  
+  # BDD for Ruby
   gem 'rspec', '~> 3.11'
+  
+  # gem 'rspec-rails', '~> 5.1', '>= 5.1.2'
   gem 'rspec-rails', '~> 5.1'
+  
+  # Set of matchers and helpers to allow you test your APIs responses like a pro.
   gem 'rspec-json_expectations', '~> 2.2'
 end
 
 group :test do
-  gem 'database_cleaner-active_record'
+  # Strategies for cleaning databases using ActiveRecord. Can be used to ensure a clean state for testing.
+  gem 'database_cleaner-active_record', '~> 2.0', '>= 2.0.1'
 end
 ```
 Após isso execute
