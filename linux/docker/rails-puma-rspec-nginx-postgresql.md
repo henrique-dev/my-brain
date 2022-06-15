@@ -233,32 +233,32 @@ Adicione as seguintes linhas no arquivo
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 # Ignore bundler config.
-/nome_aplicacao/.bundle
+nome_aplicacao/.bundle
 
 # Ignore all logfiles and tempfiles.
-/nome_aplicacao/log/*
-/nome_aplicacao/tmp/*
-!/log/.keep
-!/tmp/.keep
+nome_aplicacao/log/*
+nome_aplicacao/tmp/*
+!log/.keep
+!tmp/.keep
 
 # Ignore pidfiles, but keep the directory.
-/nome_aplicacao/tmp/pids/*
-!/tmp/pids/
-!/tmp/pids/.keep
+nome_aplicacao/tmp/pids/*
+!tmp/pids/
+!tmp/pids/.keep
 
 
-/nome_aplicacao/public/assets
-/nome_aplicacao/.byebug_history
+nome_aplicacao/public/assets
+nome_aplicacao/.byebug_history
 
 # Ignore master key for decrypting credentials and more.
-/nome_aplicacao/config/master.key
+nome_aplicacao/config/master.key
 
-/nome_aplicacao/public/packs
-/nome_aplicacao/public/packs-test
-/nome_aplicacao/node_modules
-/nome_aplicacao/yarn-error.log
-/nome_aplicacao/yarn-debug.log*
-/nome_aplicacao/.yarn-integrity
+nome_aplicacao/public/packs
+nome_aplicacao/public/packs-test
+nome_aplicacao/node_modules
+nome_aplicacao/yarn-error.log
+nome_aplicacao/yarn-debug.log*
+nome_aplicacao/.yarn-integrity
 ```
 >.dockerignore
 ```
