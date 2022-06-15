@@ -330,7 +330,7 @@ CMD ["nginx", "-g", "daemon off;"]
 >reverse-proxy.conf
 ```conf
 upstream app {
-  server hera:8010 fail_timeout=0;
+  server nome_aplicacao:8010 fail_timeout=0;
 }
 server {
   listen 8020;
