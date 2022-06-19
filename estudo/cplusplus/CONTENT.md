@@ -22,7 +22,9 @@ Esse código, como você pode esperar, imprimi na tela a mensagem "Hello, World!
 - Diretiva do pré-processador
 - A função main()
 - Fluxo de I/O
+***
 #### Comentários
+***
 A primeira linha do programa é um comentario, que nada mais é do que uma mensagem que existe apenas para o programador e é ignorada pelo compilador. Em c++ existe duas maneiras de retratar um comentário. Nos exemplos posteriores, duas barras indicam que o que mais vir na mesma linha será um comentário.
 
 O mesmo comportamento pode ser obtido usando o comentário multi-linha. Comentários multi-linhas começam com `/*` e terminam com `*/`. O seguinte código mostra um comentário multi-linha:

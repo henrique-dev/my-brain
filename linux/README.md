@@ -1,5 +1,10 @@
+
 # Linux Tips
 Uma coleção de artigos, dicas e tutoriais importantes relacionados ao Linux (Debian 10)
+
+## Deploy
+- [Fazendo o deploy de uma Aplicação Web no Amazon EC2](deploy/README.md)
+
 
 ## Geral
 - [Como adicionar um usuário ao grupo sudo](geral/README.md#como-adicionar-um-usuário-ao-grupo-sudo)
